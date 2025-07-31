@@ -14,14 +14,6 @@ type CoinPageProps = {
   params: Promise<{ id: string }>;
 };
 
-export async function generateStaticParams() {
-  return SUPPORTED_COINS.map((coin) => ({
-    id: coin,
-  }));
-}
-
-export const revalidate = 120;
-
 export default async function CoinPage({ params }: CoinPageProps) {
   const { id } = await params;
 
