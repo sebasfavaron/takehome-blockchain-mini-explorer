@@ -14,14 +14,19 @@ export async function getCoins() {
 }
 
 export async function getCoin(id: string) {
-  const response = await fetch(
-    `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${id}`,
-    {
-      next: {
-        revalidate: 60,
-      },
-    }
-  );
-  const data = (await response.json())[0] as CoinDetailsResponse;
-  return data;
+  try {
+    const response = await fetch(
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${id}`,
+      {
+        next: {
+          revalidate: 60,
+        },
+      }
+    );
+    const data = (await response.json())[0] as CoinDetailsResponse;
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 }

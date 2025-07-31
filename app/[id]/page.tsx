@@ -16,6 +16,19 @@ export default async function CoinPage({ params }: CoinPageProps) {
 
   const coin = await getCoin(id);
 
+  if (!coin) {
+    return (
+      <div className='flex flex-col items-center justify-center min-h-[40vh]'>
+        <p className='text-center text-2xl'>
+          There was an error fetching the coin data. Go back to the{' '}
+          <Link href='/' className='text-blue-600 underline'>
+            home page
+          </Link>
+          .
+        </p>
+      </div>
+    );
+  }
   return (
     <div>
       <h1 className='text-2xl font-bold'>{coin.name}</h1>
