@@ -1,8 +1,14 @@
 import { VALID_COIN_IDS } from './types';
 import { notFound } from 'next/navigation';
 import { getCoin } from '../service';
-import Image from 'next/image';
 import Link from 'next/link';
+import {
+  CoinHeader,
+  PriceDataSection,
+  MarketDataSection,
+  SupplyInfoSection,
+  PerformanceSummarySection,
+} from '../components/coin';
 
 type CoinPageProps = {
   params: Promise<{ id: string }>;
@@ -29,24 +35,38 @@ export default async function CoinPage({ params }: CoinPageProps) {
       </div>
     );
   }
+
   return (
-    <div>
-      <h1 className='text-2xl font-bold'>{coin.name}</h1>
-      <div className='flex items-center gap-2'>
-        <Image
-          src={coin.image}
-          alt={coin.name}
-          width={100}
-          height={100}
-          className='w-10 h-10'
-        />
-        <span className='text-sm text-gray-500'>{coin.name}</span>
+    <div className='w-full max-w-7xl mx-auto px-4 py-8'>
+      <CoinHeader coin={coin} />
+
+      {/* Main Content Grid */}
+      <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+        <div className='lg:col-span-1'>
+          <PriceDataSection coin={coin} />
+        </div>
+        <div className='lg:col-span-1'>
+          <MarketDataSection coin={coin} />
+        </div>
+        <div className='lg:col-span-1'>
+          <SupplyInfoSection coin={coin} />
+        </div>
       </div>
-      <p className='text-sm text-gray-500'>Low 24h: {coin.low_24h}</p>
-      <p className='text-sm text-gray-500'>
-        Current Price: {coin.current_price}
-      </p>
-      <p className='text-sm text-gray-500'>High 24h: {coin.high_24h}</p>
+
+      {/* Performance Summary Section */}
+      <div className='mt-8'>
+        <PerformanceSummarySection coin={coin} />
+      </div>
+
+      {/* Back to Home Button */}
+      <div className='mt-8 text-center'>
+        <Link
+          href='/'
+          className='inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200'
+        >
+          ← Back to Explorer
+        </Link>
+      </div>
     </div>
   );
 }
