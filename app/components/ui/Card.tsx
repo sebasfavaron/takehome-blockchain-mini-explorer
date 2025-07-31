@@ -6,11 +6,9 @@ interface CardProps {
 }
 
 export function Card({ children, className = '' }: CardProps) {
-  return (
-    <div className={`bg-white rounded-xl shadow-lg p-6 ${className}`}>
-      {children}
-    </div>
-  );
+  const baseStyles = 'bg-white rounded-xl shadow-lg p-6';
+
+  return <div className={`${baseStyles} ${className}`}>{children}</div>;
 }
 
 interface CardHeaderProps {

@@ -1,4 +1,4 @@
-import { VALID_COIN_IDS } from './types';
+import { SupportedCoin, SUPPORTED_COINS } from '../constants';
 import { notFound } from 'next/navigation';
 import { getCoin } from '../service';
 import Link from 'next/link';
@@ -16,25 +16,12 @@ type CoinPageProps = {
 
 export default async function CoinPage({ params }: CoinPageProps) {
   const { id } = await params;
-  if (!VALID_COIN_IDS.includes(id)) {
+
+  if (!SUPPORTED_COINS.includes(id as SupportedCoin)) {
     return notFound();
   }
 
-  const coin = await getCoin(id);
-
-  if (!coin) {
-    return (
-      <div className='flex flex-col items-center justify-center min-h-[40vh]'>
-        <p className='text-center text-2xl'>
-          There was an error fetching the coin data. Go back to the{' '}
-          <Link href='/' className='text-blue-600 underline'>
-            home page
-          </Link>
-          .
-        </p>
-      </div>
-    );
-  }
+  const coin = await getCoin(id as SupportedCoin);
 
   return (
     <div className='w-full max-w-7xl mx-auto px-4 py-8'>
