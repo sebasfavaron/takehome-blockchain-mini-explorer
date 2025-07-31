@@ -1,8 +1,8 @@
-import PageLayout from '@/app/components/PageLayout';
 import { VALID_COIN_IDS } from './types';
 import { notFound } from 'next/navigation';
 import { getCoin } from '../service';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type CoinPageProps = {
   params: Promise<{ id: string }>;
@@ -17,7 +17,7 @@ export default async function CoinPage({ params }: CoinPageProps) {
   const coin = await getCoin(id);
 
   return (
-    <PageLayout>
+    <div>
       <h1 className='text-2xl font-bold'>{coin.name}</h1>
       <div className='flex items-center gap-2'>
         <Image
@@ -29,7 +29,11 @@ export default async function CoinPage({ params }: CoinPageProps) {
         />
         <span className='text-sm text-gray-500'>{coin.name}</span>
       </div>
-      <p className='text-sm text-gray-500'>{coin.current_price}</p>
-    </PageLayout>
+      <p className='text-sm text-gray-500'>Low 24h: {coin.low_24h}</p>
+      <p className='text-sm text-gray-500'>
+        Current Price: {coin.current_price}
+      </p>
+      <p className='text-sm text-gray-500'>High 24h: {coin.high_24h}</p>
+    </div>
   );
 }
