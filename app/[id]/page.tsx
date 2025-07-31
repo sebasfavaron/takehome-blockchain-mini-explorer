@@ -1,8 +1,4 @@
-import {
-  SupportedCoin,
-  SUPPORTED_COINS,
-  STATIC_PAGES_REVALIDATE_TIME,
-} from '../constants';
+import { SupportedCoin, SUPPORTED_COINS } from '../constants';
 import { notFound } from 'next/navigation';
 import { getCoin } from '../service';
 import Link from 'next/link';
@@ -24,7 +20,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export const revalidate = STATIC_PAGES_REVALIDATE_TIME;
+export const revalidate = 120;
 
 export default async function CoinPage({ params }: CoinPageProps) {
   const { id } = await params;
