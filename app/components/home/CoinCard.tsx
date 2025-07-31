@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import { SupportedCoin } from '../../constants';
 import { getChangeColor, formatPercentageChange } from '../../lib/utils';
 
 interface CoinCardProps {
-  id: string;
+  id: SupportedCoin;
   price: number;
   change24h: number;
 }

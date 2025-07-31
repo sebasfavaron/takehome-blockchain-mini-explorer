@@ -1,5 +1,6 @@
 import { getCoins } from './service';
 import { HomeHeader, CoinCard } from './components/home';
+import { SupportedCoin } from './types';
 
 export default async function Home() {
   const coins = await getCoins();
@@ -17,7 +18,7 @@ export default async function Home() {
           {Object.entries(coins).map(([id, coin]) => (
             <CoinCard
               key={id}
-              id={id}
+              id={id as SupportedCoin}
               price={coin.usd}
               change24h={coin.usd_24h_change}
             />
