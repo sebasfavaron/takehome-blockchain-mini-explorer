@@ -9,6 +9,8 @@ export const API_CONFIG = {
   CURRENCY: 'usd',
 } as const;
 
+export const STATIC_PAGES_REVALIDATE_TIME = 60;
+
 // Supported Cryptocurrencies
 export const SUPPORTED_COINS = [
   'bitcoin',
