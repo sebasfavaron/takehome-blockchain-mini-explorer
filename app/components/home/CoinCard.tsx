@@ -19,9 +19,6 @@ export function CoinCard({ id, price, change24h }: CoinCardProps) {
             <h3 className='text-xl font-bold text-gray-800 capitalize group-hover:text-blue-600 transition-colors'>
               {id}
             </h3>
-            <p className='text-sm text-gray-500 uppercase mt-1'>
-              {id.slice(0, 3)}
-            </p>
           </div>
           <div className='text-right'>
             <p className='text-2xl font-bold text-gray-800'>
