@@ -1,4 +1,3 @@
-import PageLayout from './components/PageLayout';
 import { getCoins } from './service';
 import Link from 'next/link';
 
@@ -6,7 +5,7 @@ export default async function Home() {
   const coins = await getCoins();
 
   return (
-    <PageLayout>
+    <div>
       <h1>Mini Explorer</h1>
       <ul className='flex flex-col gap-2'>
         {Object.entries(coins).map(([id, coin]) => (
@@ -23,6 +22,6 @@ export default async function Home() {
           </li>
         ))}
       </ul>
-    </PageLayout>
+    </div>
   );
 }

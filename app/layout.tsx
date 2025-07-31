@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import PageLayout from './components/PageLayout';
 
 export const metadata: Metadata = {
   title: 'Mini Explorer',
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>{children}</body>
+      <body>
+        <PageLayout>{children}</PageLayout>
+      </body>
     </html>
   );
 }
