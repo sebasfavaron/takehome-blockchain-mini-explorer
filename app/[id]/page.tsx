@@ -15,12 +15,11 @@ type CoinPageProps = {
 };
 
 export async function generateStaticParams() {
-  return SUPPORTED_COINS.map((coin) => ({
-    id: coin,
-  }));
+  return [];
 }
 
 export const revalidate = 120;
+export const dynamicParams = true;
 
 export default async function CoinPage({ params }: CoinPageProps) {
   const { id } = await params;
